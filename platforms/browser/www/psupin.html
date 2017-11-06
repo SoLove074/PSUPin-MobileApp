@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="psupin.css">
+  <link rel="stylesheet" href="css/onsenui.css">
+  <link rel="stylesheet" href="css/onsen-css-components.min.css">
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8u-rk11UcZCuiSn4Igeuw98Dp1YYBySs&callback=initMap"async defer></script> -->
+  <title>PSUPIN</title>
+</head>
+
+<body>
+  <ons-page>
+    <ons-toolbar>
+      <div class="center" style="text-align: center;">
+        PSU Pin
+      </div>
+    </ons-toolbar>
+
+    <ons-tabbar id="tabbar">
+      <ons-tab page="home.html" id="home" label="Timeline" icon="fa-clock-o" badge="7" active>
+      </ons-tab>
+      <ons-tab page="addpin.html" label="New Pin" icon="fa-map-marker" active-icon="fa-map-marker">
+      </ons-tab>
+      <ons-tab page="map.html" label="Map" icon="fa-globe" active-icon="fa-globe">
+      </ons-tab>
+    </ons-tabbar>
+
+  </ons-page>
+  <!-- Home Page -->
+  <template id="home.html">
+    <ons-page id="home">
+      <div id="pins">
+        <ons-page>
+          <h4 style="text-align: center;">
+            <ons-icon icon="fa-clock-o"></ons-icon>
+            Timeline
+          </h4>
+          <ons-card>
+            <ons-list-item class="post_title">
+              <div class="left">
+                <img class="list-item__thumbnail" src="images/cat1.jpg">
+              </div>
+              <div class="center">
+                <div class="list-item__title"><b>Thirawat</b></div>
+                <div class="list-item__subtitle" style="font-size: 12px">Katu, Phuket</div>
+              </div>
+            </ons-list-item>
+
+            <div style="text-align: center; position: relative;">
+              <ons-icon size="150px" id="post-like-1" class="post-like"></ons-icon>
+              <img class="post-image" src="images/photo2.png">
+            </div>
+
+            <div class="post-caption"><b>Thirawat</b> : Beautiful Phuket </div>
+            <div class="post-time">1 HOUR AGO</div>
+          </ons-card>
+        </ons-page>
+
+      </div>
+    </ons-page>
+  </template>
+  <!-- End Home Page -->
+
+  <!-- Add Pin Page -->
+  <template id="addpin.html">
+    <ons-page id="add">
+      <h4 style="text-align: center;">
+        <ons-icon icon="fa-map-marker"></ons-icon>
+        Add New Pin
+      </h4>
+      <ons-card>
+        <div class="content">
+          <div>
+            <section style="margin: 8px; background-color:azure;">
+              <img class="preview-image" id="preview" src="images/Photo1.png">
+            </section>
+
+          </div>
+        </div>
+      </ons-card>
+      <section style="padding: 8px;text-align: center;">
+        <ons-button style="width:80%;" modifier="large" id="takephoto">Take a Photo</ons-button>
+      </section>
+      <section style="padding: 8px;text-align: center;">
+        <ons-input style="width:90%;" input-id="name" id="name" modifier="underbar" placeholder="Name"></ons-input>
+      </section>
+      <section style="padding: 8px;text-align: center;">
+        <ons-input style="width:90%;" input-id="place" id="place" modifier="underbar" placeholder="Place"></ons-input>
+      </section>
+      <section style="padding: 8px;text-align: center;">
+        <ons-input style="width:90%;" input-id="desc" id="description" modifier="underbar" placeholder="Description"></ons-input>
+      </section>
+      <section style="padding: 8px;text-align: center;">
+        <ons-button style="width:80%;" modifier="large" id="addPin">Post</ons-button>
+      </section>
+
+      <section style="padding: 8px;text-align: center;">
+        <div style="width:100%;height:200px;" id="map_canvas"></div>
+      </section>
+    </ons-page>
+  </template>
+  <!-- End Add Page -->
+
+  <!-- Map Page -->
+  <template id="map.html">
+    <ons-page id="map">
+      <h4 style="text-align: center;">
+        <ons-icon icon="fa-globe"></ons-icon>
+        PSU Pins Map.
+      </h4>
+      <div id="map"></div>
+    </ons-page>
+  </template>
+  <!-- End Page -->
+  <script type="text/javascript" src="cordova.js"></script>
+  <script src="js/onsenui.min.js"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script>
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
+  }
+  var s = document.createElement('script');
+    s.src = chrome.extension.getURL('script.js'); // In web_accessible_resources
+    (document.head || document.documentElement).appendChild(s);
+    s.onload = function() {
+    s.remove(); // Clean up, just to be nice.
+}
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvr_e6aRv3Uk-qtB7dPfZNAl031kEZTbU&callback=initMap"></script>
+</body>
+</html>
